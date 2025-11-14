@@ -88,6 +88,10 @@
     "mutex": "cpp",
     "semaphore": "cpp",
     "stop_token": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "gpio.h": "c",
+    "esp_err.h": "c",
+    "esp_http_server.h": "c",
+    "nvs_flash.h": "c"
   }
 }

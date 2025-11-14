@@ -3,5 +3,6 @@ SRCS
 "Photoresistor.cpp" 
 "PresenceSensor.cpp" 
 "XiaoHumanPresenceSensor.cpp" 
+"ClimateSensor.cpp"
 INCLUDE_DIRS "include"
-REQUIRES Dispatcher Hardware)
+REQUIRES Dispatcher Hardware dht)

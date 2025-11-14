@@ -7,7 +7,8 @@ namespace
 
 }
 Adc::Adc(uint32_t unit, uint32_t channel, Adc::Dividers dividers):
-m_multiplyFactor(dividers.groundDividerResitor / (dividers.groundDividerResitor + dividers.supplyDividerResistor))
+m_multiplyFactor(dividers.groundDividerResitor / (dividers.groundDividerResitor + dividers.supplyDividerResistor)),
+m_channel(static_cast<adc_channel_t>(channel))
 {
     adc_unit_t unit_id = static_cast<adc_unit_t>(unit);
 
@@ -22,15 +23,13 @@ m_multiplyFactor(dividers.groundDividerResitor / (dividers.groundDividerResitor 
         .bitwidth = ADC_BITWIDTH_DEFAULT,
     };
 
-    adc_channel_t channel_id = static_cast<adc_channel_t>(channel);
-
-    adc_oneshot_config_channel(m_handle, channel_id, &config);
+    adc_oneshot_config_channel(m_handle, m_channel, &config);
     
 };
 
 void Adc::Update()
 {
-    adc_oneshot_read(m_handle, ADC_CHANNEL_2, &m_currentRawValue);
+    adc_oneshot_read(m_handle, m_channel, &m_currentRawValue);
 }
 
 int Adc::GetCurrentRawValue()

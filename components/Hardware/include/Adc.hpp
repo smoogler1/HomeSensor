@@ -28,4 +28,5 @@ class Adc: public ITask
     int m_currentRawValue;
     const float m_multiplyFactor;
     adc_oneshot_unit_handle_t m_handle;
+    adc_channel_t m_channel;
 };

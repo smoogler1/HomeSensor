@@ -1,0 +1,25 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\bniczyporuk\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DSDKCONFIG='c:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\sdkconfig' -DCCACHE_ENABLE=1 C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF
+CMake Warning at C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/tools/cmake/build.cmake:627 (message):
+  WARNING: The following Kconfig variables were used in "if" clauses, but not
+  found in any Kconfig file:
+
+      ETHERNET_SPI_USE_CH390, introduced by espressif/ch390, defined in (unknown)
+      ETHERNET_SPI_USE_DM9051, introduced by espressif/dm9051, defined in (unknown)
+      ETHERNET_SPI_USE_ENC28J60, introduced by espressif/enc28j60, defined in (unknown)
+      ETHERNET_SPI_USE_KSZ8851SNL, introduced by espressif/ksz8851snl, defined in (unknown)
+      ETHERNET_SPI_USE_LAN865X, introduced by espressif/lan865x, defined in (unknown)
+      ETHERNET_SPI_USE_W5500, introduced by espressif/w5500, defined in (unknown)
+
+  
+
+Call Stack (most recent call first):
+  C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/tools/cmake/project.cmake:740 (idf_build_process)
+  CMakeLists.txt:8 (project)
+
+
+CMake Warning at C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/tools/cmake/project.cmake:753 (message):
+  Missing kconfig option.  Re-run the build process...
+Call Stack (most recent call first):
+  CMakeLists.txt:8 (project)
+
+

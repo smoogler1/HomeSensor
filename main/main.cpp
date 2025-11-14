@@ -8,7 +8,10 @@
 #include "Adc.hpp"
 #include "DispatcherTask.hpp"
 #include "Photoresistor.hpp"
-
+#include "ClimateSensor.hpp"
+#include "LightController.hpp"
+#include "http_serv.h"
+/// to check: https://github.com/Jeija/esp32-softap-ota/blob/master/main/main.c
 extern "C"
 {
     void app_main(void);
@@ -16,29 +19,30 @@ extern "C"
 
 DispatcherTask dispatcher;
 
-void update(PresenceSensor::SensorCurrentState state)
-{
-    ESP_LOGI("LOG",
-    "presence detected: %d, movement detected: %d", state.presenceDetected, state.movementDetected);
-}
-
 void init()
 {
     Uart* uart = new Uart(1, 256000, GPIO_NUM_21, GPIO_NUM_20);
-    PresenceSensor* sensor = new PresenceSensor(new Xiao::XiaoHumanPresenceSensor(uart));
-    sensor->RegisterChangeCallback(update);
+    PresenceSensor* presenceSensor = new PresenceSensor(new Xiao::XiaoHumanPresenceSensor(uart));
 
-    Adc* adc = new Adc(ADC_UNIT_1, ADC_CHANNEL_2);
+    Adc* adc = new Adc(ADC_UNIT_1, ADC_CHANNEL_3);
 
     Photoresistor* photoresistor = new Photoresistor(adc);
 
-    dispatcher.RegisterTask(sensor,DispatcherTask::TaskFrequency::TASK_FREQ_100MS);
+    ClimateSensor* climateSensor = new ClimateSensor(GPIO_NUM_2);
+
+    LightController* lightController = new LightController(presenceSensor, photoresistor, 10);
+
+    dispatcher.RegisterTask(presenceSensor,DispatcherTask::TaskFrequency::TASK_FREQ_100MS);
     dispatcher.RegisterTask(adc,DispatcherTask::TaskFrequency::TASK_FREQ_100MS);
     dispatcher.RegisterTask(photoresistor,DispatcherTask::TaskFrequency::TASK_FREQ_1S);
+    dispatcher.RegisterTask(climateSensor,DispatcherTask::TaskFrequency::TASK_FREQ_1S);
+    dispatcher.RegisterTask(lightController,DispatcherTask::TaskFrequency::TASK_FREQ_1S);
 }
+
 
 void app_main(void)
 {
+    http_server_init();
     init();
     while(1)
     {

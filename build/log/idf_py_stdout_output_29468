@@ -1,0 +1,126 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\bniczyporuk\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DSDKCONFIG='c:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\sdkconfig' -DCCACHE_ENABLE=1 C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF
+-- Found Git: C:/Users/bniczyporuk/.espressif/tools/idf-git/2.39.2/cmd/git.exe (found version "2.39.2.windows.1")
+-- Minimal build - ON
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Users/bniczyporuk/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/bniczyporuk/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/bniczyporuk/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32c3
+NOTICE: Manifest files have changed, solving dependencies.
+..NOTICE: Skipping optional dependency: espressif/lan867x
+........NOTICE: Skipping optional dependency: espressif/dm9051
+NOTICE: Skipping optional dependency: espressif/dp83848
+NOTICE: Skipping optional dependency: espressif/ip101
+NOTICE: Skipping optional dependency: espressif/ksz80xx
+NOTICE: Skipping optional dependency: espressif/ksz8851snl
+NOTICE: Skipping optional dependency: espressif/lan87xx
+NOTICE: Skipping optional dependency: espressif/rtl8201
+NOTICE: Skipping optional dependency: espressif/w5500
+...NOTICE: Updating lock file at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\dependencies.lock
+NOTICE: Processing 7 dependencies:
+NOTICE: [1/7] espressif/ch390 (0.3.0)
+NOTICE: [2/7] espressif/enc28j60 (1.0.1)
+NOTICE: [3/7] espressif/ethernet_init (1.0.0)
+NOTICE: [4/7] espressif/lan865x (0.1.2)
+NOTICE: [5/7] espressif/lan86xx_common (1.0.0)
+NOTICE: [6/7] zorxx/dht (1.0.1)
+NOTICE: [7/7] idf (5.5.1)
+NOTICE: Skipping optional dependency: espressif/dm9051
+NOTICE: Skipping optional dependency: espressif/dp83848
+NOTICE: Skipping optional dependency: espressif/ip101
+NOTICE: Skipping optional dependency: espressif/ksz80xx
+NOTICE: Skipping optional dependency: espressif/ksz8851snl
+NOTICE: Skipping optional dependency: espressif/lan867x
+NOTICE: Skipping optional dependency: espressif/lan87xx
+NOTICE: Skipping optional dependency: espressif/rtl8201
+NOTICE: Skipping optional dependency: espressif/w5500
+-- Project sdkconfig file C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/sdkconfig
+NOTICE: Manifest files have changed, solving dependencies.
+NOTICE: Skipping optional dependency: espressif/dm9051
+NOTICE: Skipping optional dependency: espressif/dp83848
+NOTICE: Skipping optional dependency: espressif/ip101
+NOTICE: Skipping optional dependency: espressif/ksz80xx
+NOTICE: Skipping optional dependency: espressif/ksz8851snl
+NOTICE: Skipping optional dependency: espressif/lan867x
+NOTICE: Skipping optional dependency: espressif/lan87xx
+NOTICE: Skipping optional dependency: espressif/rtl8201
+NOTICE: Skipping optional dependency: espressif/w5500
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ch390 for dependency "espressif/ch390"(introduced by component "espressif/ethernet_init")
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__enc28j60 for dependency "espressif/enc28j60"(introduced by component "espressif/ethernet_init")
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init for dependency "espressif/ethernet_init", specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\main\idf_component.yml
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\zorxx__dht for dependency "zorxx/dht", specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\main\idf_component.yml
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ch390 for dependency "espressif/ch390"(introduced by component "espressif/ethernet_init"), specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\main\idf_component.yml
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__enc28j60 for dependency "espressif/enc28j60"(introduced by component "espressif/ethernet_init"), specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\main\idf_component.yml
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan865x for dependency "espressif/lan865x"(introduced by component "espressif/ethernet_init"), specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\main\idf_component.yml
+....NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan86xx_common for dependency "espressif/lan86xx_common"(introduced by component "espressif/lan865x")
+..NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan86xx_common for dependency "espressif/lan86xx_common"(introduced by component "espressif/lan865x")
+.......NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ch390 for dependency "espressif/ch390", specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init\idf_component.yml
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__enc28j60 for dependency "espressif/enc28j60", specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init\idf_component.yml
+NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan865x for dependency "espressif/lan865x", specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init\idf_component.yml
+..NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan86xx_common for dependency "espressif/lan86xx_common"(introduced by component "espressif/lan865x"), specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init\idf_component.yml
+...NOTICE: Using component placed at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan86xx_common for dependency "espressif/lan86xx_common", specified in C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan865x\idf_component.yml
+.NOTICE: Updating lock file at C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\dependencies.lock
+NOTICE: Processing 9 dependencies:
+NOTICE: [1/9] espressif/ch390 (0.3.0) (C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ch390)
+NOTICE: [2/9] espressif/enc28j60 (1.0.1) (C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__enc28j60)
+NOTICE: [3/9] espressif/ethernet_init (1.0.0) (C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init)
+NOTICE: [4/9] espressif/lan865x (0.1.2) (C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan865x)
+NOTICE: [5/9] espressif/lan865x (0.1.2)
+NOTICE: [6/9] espressif/lan86xx_common (1.0.0) (C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__lan86xx_common)
+NOTICE: [7/9] espressif/lan86xx_common (1.0.0)
+NOTICE: [8/9] zorxx/dht (1.0.1) (C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\zorxx__dht)
+NOTICE: [9/9] idf (5.5.1)
+NOTICE: Skipping optional dependency: espressif/dm9051
+NOTICE: Skipping optional dependency: espressif/dp83848
+NOTICE: Skipping optional dependency: espressif/ip101
+NOTICE: Skipping optional dependency: espressif/ksz80xx
+NOTICE: Skipping optional dependency: espressif/ksz8851snl
+NOTICE: Skipping optional dependency: espressif/lan867x
+NOTICE: Skipping optional dependency: espressif/lan87xx
+NOTICE: Skipping optional dependency: espressif/rtl8201
+NOTICE: Skipping optional dependency: espressif/w5500
+-- Project sdkconfig file C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/sdkconfig
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/riscv/ld/rom.api.ld
+-- Found Python3: C:/Users/bniczyporuk/.espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- USING O3
+-- App "PresenceSensorESPIDF" version: 3f88db3-dirty
+-- Adding linker script C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.api.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.bt_funcs.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libgcc.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.version.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_master.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_50.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_smp.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_dtm.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_test.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_scan.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.eco3.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.eco3_bt_funcs.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libc.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libc-suboptimal_for_misaligned_mem.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.newlib.ld
+-- Adding linker script C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/soc/esp32c3/ld/esp32c3.peripherals.ld
+-- Components: Application Dispatcher Hardware Platform app_update bootloader bootloader_support cxx driver efuse esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_http_server esp_hw_support esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espressif__ch390 espressif__enc28j60 espressif__ethernet_init espressif__lan865x espressif__lan86xx_common esptool_py freertos hal heap http_parser log lwip main mbedtls newlib nvs_flash partition_table pthread riscv sdmmc soc spi_flash vfs wpa_supplicant zorxx__dht
+-- Component paths: C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Dispatcher C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Hardware C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Platform C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/app_update C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/bootloader C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/bootloader_support C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/cxx C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/driver C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/efuse C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_adc C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_app_format C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_bootloader_format C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_coex C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_common C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_dac C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_gpio C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_gptimer C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_i2c C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_i2s C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_ledc C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_parlio C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_pcnt C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_rmt C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_sdio C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_sdm C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_sdspi C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_spi C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_tsens C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_twai C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_uart C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_eth C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_event C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_http_server C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_hw_support C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_mm C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_netif C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_netif_stack C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_partition C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_phy C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_pm C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_ringbuf C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_rom C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_security C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_system C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_timer C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_vfs_console C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esp_wifi C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__ch390 C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__enc28j60 C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__ethernet_init C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__lan865x C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__lan86xx_common C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/esptool_py C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/freertos C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/hal C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/heap C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/http_parser C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/log C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/lwip C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/main C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/mbedtls C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/newlib C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/nvs_flash C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/partition_table C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/pthread C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/riscv C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/sdmmc C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/soc C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/spi_flash C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/vfs C:/Users/bniczyporuk/esp/v5.5.1/esp-idf/components/wpa_supplicant C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/zorxx__dht
+-- Configuring done (27.8s)
+-- Generating done (1.9s)
+-- Build files have been written to: C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build

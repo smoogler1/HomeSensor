@@ -5,7 +5,7 @@ namespace
 {
     using BrightnessLevel = Photoresistor::BrightnessLevel;
 
-    constexpr uint32_t DIVIDER_RESISTOR = 10000;
+    constexpr uint32_t DIVIDER_RESISTOR = 210000;
     constexpr float DIVIDER_SUPPLY_VOLTAGE_MV = 3300;
 
     std::map<uint32_t, Photoresistor::BrightnessLevel> RESISTANCE_TO_BRIGTHNESS_MAP = 

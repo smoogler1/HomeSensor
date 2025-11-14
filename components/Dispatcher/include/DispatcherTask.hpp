@@ -26,7 +26,7 @@ class DispatcherTask
     {
         xTaskCreate(DispatcherTask::TaskHandle,
                     "DispatcherTask",
-                    2048,
+                    1024*8,
                     reinterpret_cast<void *>(this),
                     5,
                     nullptr);

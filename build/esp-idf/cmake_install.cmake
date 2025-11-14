@@ -184,6 +184,21 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_event/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_driver_spi/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_eth/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_ringbuf/cmake_install.cmake")
 endif()
 
@@ -200,11 +215,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_driver_gptimer/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_driver_spi/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -314,12 +324,102 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/zorxx__dht/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/Platform/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/achimpieters__esp32-dht/cmake_install.cmake")
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/Application/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/nvs_flash/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_phy/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_vfs_console/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/vfs/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/lwip/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_netif_stack/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_netif/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/wpa_supplicant/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_coex/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_wifi/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/http_parser/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/esp_http_server/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/espressif__ch390/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/espressif__enc28j60/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/espressif__lan86xx_common/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/espressif__lan865x/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/espressif__ethernet_init/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

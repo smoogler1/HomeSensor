@@ -1,30 +1,64 @@
 dependencies:
-  achimpieters/esp32-dht:
-    component_hash: e605fcdad07d9d9ad63fe14585b14bee8b4b6c7862247bf590cae44226f8e09c
+  espressif/ch390:
+    dependencies: []
+    source:
+      path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ch390
+      type: local
+    version: 0.3.0
+  espressif/enc28j60:
+    dependencies: []
+    source:
+      path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__enc28j60
+      type: local
+    version: 1.0.1
+  espressif/ethernet_init:
+    dependencies: []
+    source:
+      path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init
+      type: local
+    version: 1.0.0
+  espressif/lan865x:
+    component_hash: 2a27887016922bea266f6052bd811b720b30e516188863051971cbc809710b4e
     dependencies:
+    - name: espressif/lan86xx_common
+      registry_url: https://components.espressif.com
+      require: private
+      version: '*'
     - name: idf
       require: private
-      version: '>=5.0'
+      version: '>=5.2'
     source:
       registry_url: https://components.espressif.com/
       type: service
-    targets:
-    - esp32
-    - esp32c2
-    - esp32c3
-    - esp32c5
-    - esp32c6
-    - esp32c61
-    - esp32s2
-    - esp32s3
-    version: 1.0.2
+    version: 0.1.2
+  espressif/lan86xx_common:
+    component_hash: 6dcb1be9f43ae940979bd628fa5bee278949b66c545e1fe2321e486102e81026
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.2'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.0
   idf:
     source:
       type: idf
     version: 5.5.1
+  zorxx/dht:
+    dependencies: []
+    source:
+      path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\zorxx__dht
+      type: local
+    version: 1.0.1
 direct_dependencies:
-- achimpieters/esp32-dht
+- espressif/ch390
+- espressif/enc28j60
+- espressif/ethernet_init
+- espressif/lan865x
+- espressif/lan86xx_common
 - idf
-manifest_hash: 0b39aa5811118dc69899cb5b4e3fe1a33ac39390552dc5f82f77c1034633596f
+- zorxx/dht
+manifest_hash: 0e90043554eb55fbf14e5994837f57376394f318318567752840e5efd8b7af34
 target: esp32c3
 version: 2.0.0

@@ -1,0 +1,26 @@
+#ifndef HTTP_SERV
+#define HTTP_SERV
+
+#define CONFIG_EXAMPLE_STATIC_IP_ADDR "192.168.1.52"
+#define CONFIG_EXAMPLE_STATIC_NETMASK_ADDR "255.255.255.0"
+#define CONFIG_EXAMPLE_STATIC_GW_ADDR "192.168.1.1"
+#define CONFIG_EXAMPLE_STATIC_DNS_MANUAL 1
+#define CONFIG_EXAMPLE_STATIC_DNS_SERVER_MAIN "8.8.8.8"
+#define CONFIG_EXAMPLE_STATIC_DNS_SERVER_BACKUP "1.1.1.1"
+#define CONFIG_EXAMPLE_USE_WIFI 1
+#define CONFIG_EXAMPLE_WIFI_SSID "Netia"
+#define CONFIG_EXAMPLE_WIFI_PASSWORD "$Threesmallpigs$"
+#define CONFIG_EXAMPLE_MAXIMUM_RETRY 5
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void http_server_init();
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif 
