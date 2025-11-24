@@ -10,7 +10,9 @@
 #include "Photoresistor.hpp"
 #include "ClimateSensor.hpp"
 #include "LightController.hpp"
+#include "Gpio.hpp"
 #include "http_serv.h"
+
 /// to check: https://github.com/Jeija/esp32-softap-ota/blob/master/main/main.c
 extern "C"
 {
@@ -21,6 +23,9 @@ DispatcherTask dispatcher;
 
 void init()
 {
+
+    ESP_LOGI("LOG", "!!! Application Initialization !!!");
+
     Uart* uart = new Uart(1, 256000, GPIO_NUM_21, GPIO_NUM_20);
     PresenceSensor* presenceSensor = new PresenceSensor(new Xiao::XiaoHumanPresenceSensor(uart));
 
@@ -30,7 +35,8 @@ void init()
 
     ClimateSensor* climateSensor = new ClimateSensor(GPIO_NUM_2);
 
-    LightController* lightController = new LightController(presenceSensor, photoresistor, 10);
+    Gpio* lightOutputGpio = new Gpio(GPIO_NUM_9,Gpio::DirectionMode::OUTPUT,Gpio::PullMode::NO_PULL);
+    LightController* lightController = new LightController(presenceSensor, photoresistor,lightOutputGpio, 10);
 
     dispatcher.RegisterTask(presenceSensor,DispatcherTask::TaskFrequency::TASK_FREQ_100MS);
     dispatcher.RegisterTask(adc,DispatcherTask::TaskFrequency::TASK_FREQ_100MS);
@@ -46,6 +52,6 @@ void app_main(void)
     init();
     while(1)
     {
-        vTaskDelay(100/portTICK_PERIOD_MS);
+        vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }

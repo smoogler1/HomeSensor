@@ -13,7 +13,7 @@
 				} else {
 					document.getElementById("otafile").disabled = true;
 					document.getElementById("upload").disabled = true;
-
+					
 					var file = otafile[0];
 					var xhr = new XMLHttpRequest();
 					xhr.onreadystatechange = function() {
@@ -40,6 +40,31 @@
 					xhr.send(file);
 				}
 			}
+
+			function sendIpConfig() {
+                var ip = document.getElementById("ipfield").value;
+                if (!ip) {
+                    alert("IP address is empty!");
+                    return;
+                }
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/set_ip", true);
+                xhr.setRequestHeader("Content-Type", "text/plain; charset=utf-8"); // surowy tekst [web:16][web:29]
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            alert("IP updated: " + xhr.responseText);
+                        } else {
+                            alert("Error " + xhr.status + ": " + xhr.responseText);
+                        }
+                    }
+                };
+
+                // wysyłamy dokładnie to, co w polu (np. "192.168.1.50") jako plain text [web:16][web:15]
+                xhr.send(ip);
+            }
 		</script>
 	</head>
 	<body>
@@ -52,5 +77,17 @@
 			<button id="upload" type="button" onclick="startUpload()">Upload</button>
 		</div>
 		<div id="progress"></div>
+
+		<hr>
+        <!-- Osobna sekcja konfiguracji IP -->
+        <h2>Static IP configuration</h2>
+        <div>
+            <label for="ipfield">IP address:</label>
+            <input type="text" id="ipfield" name="ipfield" placeholder="192.168.1.52" />
+        </div>
+        <div>
+            <button type="button" onclick="sendIpConfig()">Set IP</button>
+        </div>
+
 	</body>
 </html>

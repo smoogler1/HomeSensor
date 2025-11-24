@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "PresenceSensorESPIDF",
-    "project_version":    "3f88db3-dirty",
+    "project_version":    "b60c4ca-dirty",
     "project_path":       "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF",
     "idf_path":           "C:/Users/bniczyporuk/esp/v5.5.1/esp-idf",
     "build_dir":          "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build",
@@ -35,7 +35,7 @@
             "dir": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application",
             "type": "LIBRARY",
             "lib": "__idf_Application",
-            "reqs": [ "Dispatcher", "Platform" ],
+            "reqs": [ "Dispatcher", "Platform", "Hardware" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
@@ -70,7 +70,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/Hardware/libHardware.a",
-            "sources": [ "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Hardware/Adc.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Hardware/Uart.cpp" ],
+            "sources": [ "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Hardware/Adc.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Hardware/Uart.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Hardware/Gpio.cpp" ],
             "include_dirs": [ "include" ]
         },
         "Platform": {
@@ -2514,7 +2514,7 @@
             "prefix": "idf",
             "dir": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application",
             "lib": "__idf_Application",
-            "reqs": [ "Dispatcher", "Platform" ],
+            "reqs": [ "Dispatcher", "Platform", "Hardware" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],

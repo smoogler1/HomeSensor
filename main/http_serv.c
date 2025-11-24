@@ -65,6 +65,61 @@ static EventGroupHandle_t s_network_event_group;
 
 static const char *TAG = "static_ip";
 
+typedef struct {
+    uint32_t ip;   // w formacie esp_ip4_addr_t.addr (big-endian)
+    uint32_t gw;
+    uint32_t netmask;
+} ip_config_t;
+
+static esp_err_t load_ip_from_nvs(esp_netif_ip_info_t *cfg)
+{
+    nvs_handle_t nvs;
+    esp_err_t err = nvs_open("netcfg", NVS_READONLY, &nvs);
+    if (err != ESP_OK) {
+        ESP_LOGW(TAG, "nvs_open (netcfg) failed: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    size_t size = sizeof(esp_netif_ip_info_t);
+    err = nvs_get_blob(nvs, "ip_cfg", cfg, &size);
+    nvs_close(nvs);
+
+    if (err == ESP_ERR_NVS_NOT_FOUND) {
+        ESP_LOGW(TAG, "No IP config in NVS");
+    } else if (err != ESP_OK) {
+        ESP_LOGE(TAG, "nvs_get_blob failed: %s", esp_err_to_name(err));
+    }
+
+    
+    if(cfg->ip.addr == 0xFFFFFFFF)
+        return ESP_FAIL;
+
+    return err;
+}
+
+
+static esp_err_t save_ip_to_nvs(const esp_netif_ip_info_t *cfg)
+{
+    nvs_handle_t nvs;
+    esp_err_t err = nvs_open("netcfg", NVS_READWRITE, &nvs);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "nvs_open (netcfg) failed: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    err = nvs_set_blob(nvs, "ip_cfg", cfg, sizeof(esp_netif_ip_info_t));
+    if (err == ESP_OK) {
+        err = nvs_commit(nvs);
+    }
+    nvs_close(nvs);
+
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to save IP config: %s", esp_err_to_name(err));
+    }
+
+    return err;
+}
+
 static esp_err_t example_set_dns_server(esp_netif_t *netif, uint32_t addr, esp_netif_dns_type_t type)
 {
     if (addr && (addr != IPADDR_NONE)) {
@@ -76,7 +131,7 @@ static esp_err_t example_set_dns_server(esp_netif_t *netif, uint32_t addr, esp_n
     return ESP_OK;
 }
 
-static void example_set_static_ip(esp_netif_t *netif)
+static void example_set_static_ip(esp_netif_t *netif, uint32_t ip_val)
 {
     if (esp_netif_dhcpc_stop(netif) != ESP_OK) {
         ESP_LOGE(TAG, "Failed to stop dhcp client");
@@ -84,7 +139,7 @@ static void example_set_static_ip(esp_netif_t *netif)
     }
     esp_netif_ip_info_t ip;
     memset(&ip, 0 , sizeof(esp_netif_ip_info_t));
-    ip.ip.addr = ipaddr_addr(EXAMPLE_STATIC_IP_ADDR);
+    ip.ip.addr = ip_val;
     ip.netmask.addr = ipaddr_addr(EXAMPLE_STATIC_NETMASK_ADDR);
     ip.gw.addr = ipaddr_addr(EXAMPLE_STATIC_GW_ADDR);
     if (esp_netif_set_ip_info(netif, &ip) != ESP_OK) {
@@ -104,8 +159,17 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
 
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
-    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_CONNECTED) {
-        example_set_static_ip(arg);
+    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_CONNECTED) 
+    {
+        esp_netif_ip_info_t ip;
+        if(load_ip_from_nvs(&ip) == ESP_OK)
+        {
+            example_set_static_ip(arg,ip.ip.addr);
+        }
+        else
+        {
+            example_set_static_ip(arg,ipaddr_addr(EXAMPLE_STATIC_IP_ADDR));
+        }
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         if (s_retry_num < EXAMPLE_MAXIMUM_RETRY) {
             esp_wifi_connect();
@@ -316,6 +380,35 @@ esp_err_t update_post_handler(httpd_req_t *req)
 	return ESP_OK;
 }
 
+/*
+ * Handle OTA file upload
+ */
+esp_err_t ip_set_handler(httpd_req_t *req)
+{
+    char buf[64];
+	int recv_len = httpd_req_recv(req, buf, sizeof(buf));
+
+    esp_netif_ip_info_t ip;
+
+    ip.ip.addr = ipaddr_addr(buf);
+    ip.netmask.addr = ipaddr_addr(EXAMPLE_STATIC_NETMASK_ADDR);
+    ip.gw.addr = ipaddr_addr(EXAMPLE_STATIC_GW_ADDR);
+    
+    if(save_ip_to_nvs(&ip) == ESP_OK)
+    {
+        ESP_LOGI(TAG, "New IP set %s dec: %d", buf, ip.ip.addr);
+        httpd_resp_sendstr(req, "New IP set!\n");
+        return ESP_OK;
+    }
+    else
+    {
+        httpd_resp_sendstr(req, "IP set error!\n");
+        return ESP_FAIL;
+    }
+
+	return ESP_OK;
+}
+
 httpd_uri_t index_get = {
 	.uri	  = "/",
 	.method   = HTTP_GET,
@@ -330,6 +423,14 @@ httpd_uri_t update_post = {
 	.user_ctx = NULL
 };
 
+httpd_uri_t ip_set_post = {
+	.uri	  = "/set_ip",
+	.method   = HTTP_POST,
+	.handler  = ip_set_handler,
+	.user_ctx = NULL
+};
+
+
 static esp_err_t start_webserver(void) {
 	static httpd_handle_t http_server = NULL;
 
@@ -338,6 +439,7 @@ static esp_err_t start_webserver(void) {
 	if (httpd_start(&http_server, &config) == ESP_OK) {
 		httpd_register_uri_handler(http_server, &index_get);
 		httpd_register_uri_handler(http_server, &update_post);
+        httpd_register_uri_handler(http_server, &ip_set_post);
 	}
 
 	return http_server == NULL ? ESP_FAIL : ESP_OK;
@@ -397,9 +499,4 @@ void http_server_init()
 			esp_ota_mark_app_valid_cancel_rollback();
 		}
 	}
-
-    while(1)
-    {
-         vTaskDelay(100);
-    }
 }

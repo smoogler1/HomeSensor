@@ -49,6 +49,9 @@ void Photoresistor::Update()
         previousResistance = b.first;
     }
 
+    if(previousBrightness != m_currentBrightness)
+        m_callback(m_currentBrightness);
+        
     ESP_LOGI("LOG","brightness %d, resistance: %d adc %d", (int)m_currentBrightness,(int)m_currentResistance,adcVoltageMv);
 }
 
