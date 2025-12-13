@@ -92,6 +92,16 @@
     "gpio.h": "c",
     "esp_err.h": "c",
     "esp_http_server.h": "c",
-    "nvs_flash.h": "c"
+    "nvs_flash.h": "c",
+    "netdb.h": "c",
+    "http_serv.h": "c",
+    "ethernet_init.h": "c",
+    "esp_log.h": "c",
+    "freertos.h": "c",
+    "esp_event.h": "c",
+    "buffer": "cpp",
+    "internet": "cpp",
+    "socket": "cpp",
+    "nvmemorywrapper.h": "c"
   }
 }

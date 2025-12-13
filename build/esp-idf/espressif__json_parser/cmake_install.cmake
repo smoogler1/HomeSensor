@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Dispatcher
+# Install script for directory: C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__json_parser
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

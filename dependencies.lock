@@ -17,6 +17,18 @@ dependencies:
       path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__ethernet_init
       type: local
     version: 1.0.0
+  espressif/jsmn:
+    dependencies: []
+    source:
+      path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__jsmn
+      type: local
+    version: 1.1.0
+  espressif/json_parser:
+    dependencies: []
+    source:
+      path: C:\Users\bniczyporuk\Projekt\PresenceSensorESPIDF\managed_components\espressif__json_parser
+      type: local
+    version: 1.0.3
   espressif/lan865x:
     component_hash: 2a27887016922bea266f6052bd811b720b30e516188863051971cbc809710b4e
     dependencies:
@@ -55,10 +67,12 @@ direct_dependencies:
 - espressif/ch390
 - espressif/enc28j60
 - espressif/ethernet_init
+- espressif/jsmn
+- espressif/json_parser
 - espressif/lan865x
 - espressif/lan86xx_common
 - idf
 - zorxx/dht
-manifest_hash: 0e90043554eb55fbf14e5994837f57376394f318318567752840e5efd8b7af34
+manifest_hash: aa3121d87c0ae0e5a93586680f5064b943e19dad07f080f0dab05f5ca243a75d
 target: esp32c3
 version: 2.0.0

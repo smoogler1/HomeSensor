@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>Multi sensor</title>
+
+
+		
+	</head>
+
+	<body>
+		<script>
+			function startUpload() {
+				var otafile = document.getElementById("otafile").files;
+
+				if (otafile.length == 0) {
+					alert("No file selected!");
+				} else {
+					document.getElementById("otafile").disabled = true;
+					document.getElementById("upload").disabled = true;
+					
+					var file = otafile[0];
+					var xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								document.open();
+								document.write(xhr.responseText);
+								document.close();
+							} else if (xhr.status == 0) {
+								alert("Server closed the connection abruptly!");
+								location.reload()
+							} else {
+								alert(xhr.status + " Error!\n" + xhr.responseText);
+								location.reload()
+							}
+						}
+					};
+
+					xhr.upload.onprogress = function (e) {
+						var progress = document.getElementById("progress");
+						progress.textContent = "Progress: " + (e.loaded / e.total * 100).toFixed(0) + "%";
+					};
+					xhr.open("POST", "/update", true);
+					xhr.send(file);
+				}
+			}
+		</script>
+
+		<h1>Firmware Update</h1>
+		<div>
+			<label for="otafile">Firmware file:</label>
+			<input type="file" id="otafile" name="otafile" />
+		</div>
+		<div>
+			<button id="upload" type="button" onclick="startUpload()">Upload</button>
+		</div>
+		<div id="progress"></div>
+
+		<hr>
+        <!-- Osobna sekcja konfiguracji IP -->
+		<h1>Device network settings</h1>
+
+		<!-- Other sections of your page (e.g. DHCP, WiFi, etc.) stay as they are -->
+
+		<label>
+			IP address:
+			<input type="text" id="static-ip" placeholder="192.168.1.52">
+		</label>
+
+		<label>
+			Netmask:
+			<input type="text" id="static-netmask" placeholder="255.255.255.0">
+		</label>
+
+		<label>
+			Gateway:
+			<input type="text" id="static-gateway" placeholder="192.168.1.1">
+		</label>
+
+		<button id="static-set-ip-btn">Set Ip</button>
+
+		<div id="static-ip-error"></div>
+		<div id="static-ip-success"></div>
+
+		<script>
+			function isEmpty(str) {
+			return !str || str.trim() === "";
+			}
+
+			document.getElementById("static-set-ip-btn").addEventListener("click", async function () {
+			const ip = document.getElementById("static-ip").value;
+			const netmask = document.getElementById("static-netmask").value;
+			const gateway = document.getElementById("static-gateway").value;
+
+			const errorDiv = document.getElementById("static-ip-error");
+			const successDiv = document.getElementById("static-ip-success");
+			errorDiv.textContent = "";
+			successDiv.textContent = "";
+
+			if (isEmpty(ip) || isEmpty(netmask) || isEmpty(gateway)) {
+				errorDiv.textContent = "All fields (IP, netmask, gateway) must be filled.";
+				return;
+			}
+
+			const body = {
+				ip: ip,
+				netmask: netmask,
+				gateway: gateway
+			};
+
+			try {
+				const resp = await fetch("/set_ip", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(body)
+				});
+
+				if (!resp.ok) {
+				errorDiv.textContent = "Failed to set IP configuration (HTTP " + resp.status + ").";
+				return;
+				}
+
+				successDiv.textContent = "IP configuration sent successfully.";
+			} catch (e) {
+				errorDiv.textContent = "Error sending request: " + e;
+			}
+			});
+		</script>
+	</body>
+</html>

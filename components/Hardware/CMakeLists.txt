@@ -3,5 +3,7 @@ idf_component_register(
 "Adc.cpp" 
 "Uart.cpp"
 "Gpio.cpp"
-REQUIRES esp_driver_uart esp_driver_gpio esp_adc Dispatcher
+"NvMemory.cpp"
+"NvMemoryWrapper.cpp"
+REQUIRES esp_driver_uart esp_driver_gpio esp_adc nvs_flash Common
 INCLUDE_DIRS "include")

@@ -5,4 +5,4 @@ SRCS
 "XiaoHumanPresenceSensor.cpp" 
 "ClimateSensor.cpp"
 INCLUDE_DIRS "include"
-REQUIRES Dispatcher Hardware dht)
+REQUIRES Common Hardware dht)

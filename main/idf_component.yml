@@ -17,6 +17,7 @@ dependencies:
   #achimpieters/esp32-dht: ^1.0.2
   #esp-idf-lib/dht: ^1.1.7
   zorxx/dht: ^1.0.1
-  
+
   espressif/ethernet_init:
     version: '*'
+  espressif/json_parser: ^1.0.3
