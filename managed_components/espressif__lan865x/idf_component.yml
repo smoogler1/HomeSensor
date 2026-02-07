@@ -5,7 +5,7 @@ dependencies:
 description: LAN865x Ethernet MAC-PHY Driver
 repository: git://github.com/espressif/esp-eth-drivers.git
 repository_info:
-  commit_sha: 276d211cf9117c51d50787ed37c6456147f0c81b
+  commit_sha: cc904eb1df04a9174ded8feccb3f4bd8524e02e2
   path: lan865x
 url: https://github.com/espressif/esp-eth-drivers/tree/master/lan865x
-version: 0.1.2
+version: 0.1.3

@@ -4,9 +4,6 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title>Multi sensor</title>
-
-
-		
 	</head>
 
 	<body>
@@ -83,6 +80,55 @@
 
 		<div id="static-ip-error"></div>
 		<div id="static-ip-success"></div>
+        <!-- Osobna sekcja konfiguracji IP -->
+		<h1>Current status</h1>
+		<button type="button" onclick="location.assign('/status')">Open status page</button>
+		<hr>
+
+		<h1>Light Controller</h1>
+		<div>
+		<button id="light-enable-btn" type="button">Enable</button>
+		<button id="light-disable-btn" type="button">Disable</button>
+		</div>
+
+		<div id="light-error"></div>
+		<div id="light-success"></div>
+
+		<script>
+		async function sendLightControllerState(state) {
+			const errorDiv = document.getElementById("light-error");
+			const successDiv = document.getElementById("light-success");
+			errorDiv.textContent = "";
+			successDiv.textContent = "";
+
+			try {
+			const resp = await fetch("/lightControllerState", {
+				method: "POST",
+				headers: {
+				"Content-Type": "application/json"
+				},
+				body: JSON.stringify({ state: state })
+			});
+
+			if (!resp.ok) {
+				errorDiv.textContent = "Failed to set light controller state (HTTP " + resp.status + ").";
+				return;
+			}
+
+			successDiv.textContent = "Light controller state set to: " + (state ? "enabled" : "disabled") + ".";
+			} catch (e) {
+			errorDiv.textContent = "Error sending request: " + e;
+			}
+		}
+
+		document.getElementById("light-enable-btn").addEventListener("click", function () {
+			sendLightControllerState(true);
+		});
+
+		document.getElementById("light-disable-btn").addEventListener("click", function () {
+			sendLightControllerState(false);
+		});
+		</script>
 
 		<script>
 			function isEmpty(str) {
@@ -109,7 +155,7 @@
 				netmask: netmask,
 				gateway: gateway
 			};
-
+				
 			try {
 				const resp = await fetch("/set_ip", {
 				method: "POST",

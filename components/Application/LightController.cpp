@@ -42,16 +42,39 @@ void LightController::SetLightState(bool state)
 {
     if(state)
     {
+        if(m_overrideFlag)
+            return;
+
+        m_lightEnabled = true;
         m_enabledCounterS = m_lightEnabledTimeS;
         m_gpio->Set(true);
     }
     else
     {
+        m_lightEnabled = false;
         m_enabledCounterS = 0;
         m_gpio->Set(false);
     }
 
     ESP_LOGI("LOG","Set Light %d", state);    
+}
+
+bool LightController::GetLightState()
+{
+    return m_lightEnabled;    
+}
+
+void LightController::DisableController()
+{
+    ESP_LOGI("LOG","Light controller disabled!");  
+    m_overrideFlag = true;
+    m_gpio->Set(false);
+}
+
+void LightController::EnableController()
+{
+    ESP_LOGI("LOG","Light controller enabled!");  
+    m_overrideFlag = false;
 }
 
 void LightController::Update()

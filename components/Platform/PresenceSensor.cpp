@@ -58,19 +58,19 @@ void PresenceSensor::Update()
 
     if (previousState != m_currentState)
     {
-        ESP_LOGI("LOG", "Report:  \r\n "
-            "detected distance %d, \r\n "
-            "stationary distance %d, \r\n "
-            "excercise energy %d, \r\n "
-            "movement target discance %d, \r\n "
-            "stationary energy %d \r\n"
-            "target status %d",
-        targetData.detectedDistanceCm,
-        targetData.distanceToStationaryTargetCm,
-        targetData.excerciseTargetEnergyValue,
-        targetData.movementTargetDistanceCm,
-        targetData.stationaryTargetEnergyValue,
-        targetData.targetStatus);
+        // ESP_LOGI("LOG", "Report:  \r\n "
+        //     "detected distance %d, \r\n "
+        //     "stationary distance %d, \r\n "
+        //     "excercise energy %d, \r\n "
+        //     "movement target discance %d, \r\n "
+        //     "stationary energy %d \r\n"
+        //     "target status %d",
+        // targetData.detectedDistanceCm,
+        // targetData.distanceToStationaryTargetCm,
+        // targetData.excerciseTargetEnergyValue,
+        // targetData.movementTargetDistanceCm,
+        // targetData.stationaryTargetEnergyValue,
+        // targetData.targetStatus);
 
         m_detectionCallback(m_currentState);
     }

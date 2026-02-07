@@ -9,6 +9,10 @@ class LightController: public ITask
     LightController(PresenceSensor* presenceSensor, Photoresistor* photoresistor, Gpio* gpio, uint32_t lightEnabledTimeS);
 
     void Update() override;
+    bool GetLightState();
+
+    void DisableController();
+    void EnableController();
     private:
 
     void SetLightState(bool state);
@@ -17,8 +21,9 @@ class LightController: public ITask
     Photoresistor* m_photoresistor;
     Gpio* m_gpio;
     
-    bool m_isDark;
-    bool m_lightEnabled;
+    bool m_isDark = false;
+    bool m_lightEnabled = false;
+    bool m_overrideFlag = false;
     const uint32_t m_lightEnabledTimeS;
     uint32_t m_enabledCounterS;
 

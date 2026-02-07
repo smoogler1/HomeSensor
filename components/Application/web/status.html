@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>Multi sensor status</title>
+	</head>
+<body>
+        <hr>
+        <!-- Osobna sekcja konfiguracji IP -->
+		<h1>Current status</h1>
+
+		<div id="status">
+		<div>Temperature: <span id="st-temperature">--</span> °C</div>
+		<div>Humidity: <span id="st-humidity">--</span> %</div>
+		<div>Brightness: <span id="st-brightness">--</span></div>
+		<div>Light: <span id="st-light">--</span></div>
+		<div>Stream: <span id="st-stream">disconnected</span></div>
+		</div>
+
+		<script>
+		document.addEventListener("DOMContentLoaded", () => {
+		const elT = document.getElementById("st-temperature");
+		const elH = document.getElementById("st-humidity");
+		const elB = document.getElementById("st-brightness");
+		const elL = document.getElementById("st-light");
+		const elS = document.getElementById("st-stream");
+
+		const sse = new EventSource("/statusStream"); // same-origin SSE [page:2][page:0]
+
+		sse.onopen = () => { elS.textContent = "connected"; }; // EventSource supports open/message/error [page:0]
+		sse.onerror = () => { elS.textContent = "error/reconnecting"; }; // browser will auto-reconnect by default [page:2]
+
+		sse.onmessage = (event) => { // messages without an "event:" field arrive here [page:2][page:0]
+			try {
+			const d = JSON.parse(event.data); // common pattern: data contains JSON [page:2]
+
+			if (typeof d.temperature === "number") elT.textContent = d.temperature.toFixed(1);
+			if (typeof d.humidity === "number")    elH.textContent = d.humidity.toFixed(1);
+			if (d.brightness !== undefined)        elB.textContent = String(d.brightness);
+			if (d.light_state !== undefined)       elL.textContent = (Number(d.light_state) ? "ON" : "OFF");
+			} catch (e) {
+			// Optional: ignore malformed lines
+			}
+		};
+		});
+		</script>
+</body>
+</html>

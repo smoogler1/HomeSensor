@@ -2,7 +2,7 @@
 #include "nvs_flash.h"
 #include "esp_log.h"
 
-const char* TAG = "NVMEM";
+static const char* TAG = "NVMEM";
 
 NvMemory::NvMemory()
 {

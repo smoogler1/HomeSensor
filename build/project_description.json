@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "PresenceSensorESPIDF",
-    "project_version":    "9f02d6d-dirty",
+    "project_version":    "0647cef-dirty",
     "project_path":       "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF",
     "idf_path":           "C:/Users/bniczyporuk/esp/v5.5.1/esp-idf",
     "build_dir":          "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build",
@@ -40,7 +40,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/Application/libApplication.a",
-            "sources": [ "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/LightController.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/OtaUpdate.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_server.c", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/GetIndex.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/PostOtaUpdate.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/PostSetIp.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/index.html.S" ],
+            "sources": [ "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/LightController.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/OtaUpdate.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_server.c", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/HttpServicesInit.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/GetIndex.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/PostOtaUpdate.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/PostSetIp.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/PostLightControllerState.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/GetStatusStream.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/components/Application/http_requests/GetStatus.cpp", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/index.html.S", "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/status.html.S" ],
             "include_dirs": [ "include" ]
         },
         "Common": {
@@ -921,7 +921,7 @@
             "type": "LIBRARY",
             "lib": "__idf_espressif__lan865x",
             "reqs": [ "espressif__lan86xx_common" ],
-            "priv_reqs": [ "log", "esp_eth", "esp_timer", "esp_driver_gpio" ],
+            "priv_reqs": [ "esp_eth", "esp_driver_gpio", "esp_driver_spi", "esp_timer" ],
             "managed_reqs": [ "espressif__lan86xx_common" ],
             "managed_priv_reqs": [],
             "file": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build/esp-idf/espressif__lan865x/libespressif__lan865x.a",
@@ -1235,7 +1235,7 @@
             "dir": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/zorxx__dht",
             "type": "LIBRARY",
             "lib": "__idf_zorxx__dht",
-            "reqs": [ "driver" ],
+            "reqs": [ "esp_driver_gpio" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
@@ -2680,7 +2680,7 @@
             "dir": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/espressif__lan865x",
             "lib": "__idf_espressif__lan865x",
             "reqs": [ "espressif__lan86xx_common" ],
-            "priv_reqs": [ "log", "esp_eth", "esp_timer", "esp_driver_gpio" ],
+            "priv_reqs": [ "esp_eth", "esp_driver_gpio", "esp_driver_spi", "esp_timer" ],
             "managed_reqs": [ "espressif__lan86xx_common" ],
             "managed_priv_reqs": [],
             "include_dirs": [ "include" ]
@@ -2703,7 +2703,7 @@
             "prefix": "idf",
             "dir": "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/managed_components/zorxx__dht",
             "lib": "__idf_zorxx__dht",
-            "reqs": [ "driver" ],
+            "reqs": [ "esp_driver_gpio" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],

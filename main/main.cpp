@@ -11,7 +11,6 @@
 #include "ClimateSensor.hpp"
 #include "LightController.hpp"
 #include "Gpio.hpp"
-#include "http_serv.h"
 #include "NvMemorySetter.hpp"
 #include "network_wifi.h"
 #include "http_server.h"
@@ -22,15 +21,6 @@ extern "C"
 }
 
 DispatcherTask dispatcher;
-
-void network_init()
-{
-    NvMemory* memoryDriver = new NvMemory();
-    nv_memory_set_driver(memoryDriver);
-
-    network_wifi_init();
-    http_server_init();
-}
 
 void app_init()
 {
@@ -53,14 +43,23 @@ void app_init()
     dispatcher.RegisterTask(photoresistor,DispatcherTask::TaskFrequency::TASK_FREQ_1S);
     dispatcher.RegisterTask(climateSensor,DispatcherTask::TaskFrequency::TASK_FREQ_1S);
     dispatcher.RegisterTask(lightController,DispatcherTask::TaskFrequency::TASK_FREQ_1S);
+
+    http_set_climate_sensor(climateSensor);
+    http_set_photoresistor(photoresistor);
+    http_set_light_controller(lightController);
+    
+    NvMemory* memoryDriver = new NvMemory();
+    nv_memory_set_driver(memoryDriver);
+
+    network_wifi_init();
+    http_server_init();
 }
 
 
 void app_main(void)
 {
-    //http_server_init();
-    network_init();
-    //app_init();
+    app_init();
+    
     while(1)
     {
         vTaskDelay(1000/portTICK_PERIOD_MS);
