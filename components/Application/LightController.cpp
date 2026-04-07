@@ -2,7 +2,7 @@
 #include "esp_log.h"
 namespace
 {
-
+    
 }
 
 LightController::LightController(PresenceSensor* presenceSensor, Photoresistor* photoresistor, Gpio* gpio, uint32_t lightEnabledTimeS):
@@ -12,6 +12,7 @@ m_gpio(gpio),
 m_lightEnabledTimeS(lightEnabledTimeS),
 m_movementLatch(false)
 {
+    SetDarknessState(m_photoresistor->CurrentBrightness());
     m_presenceSensor->RegisterChangeCallback([this](PresenceSensor::SensorCurrentState currentPresenceState)
     {
         if(m_isDark == false)
@@ -27,14 +28,7 @@ m_movementLatch(false)
 
     m_photoresistor->RegisterBrightnessLevelChange([this](Photoresistor::BrightnessLevel brightness)
     {
-        const uint32_t maxBrightessLevel = static_cast<uint32_t>(Photoresistor::BrightnessLevel::BRIGHTNESS_DIM);
-        const uint32_t currentBrightessLevel = static_cast<uint32_t>(brightness);
-        ESP_LOGI("LOG","Brightness change %d",currentBrightessLevel);
-        if(currentBrightessLevel < maxBrightessLevel)
-            m_isDark = true;
-        else
-            m_isDark = false;
-
+        SetDarknessState(brightness);
     });
 }
 
@@ -57,6 +51,17 @@ void LightController::SetLightState(bool state)
     }
 
     ESP_LOGI("LOG","Set Light %d", state);    
+}
+
+void LightController::SetDarknessState(Photoresistor::BrightnessLevel brightness)
+{
+        const uint32_t maxBrightessLevel = static_cast<uint32_t>(Photoresistor::BrightnessLevel::BRIGHTNESS_DIM);
+        const uint32_t currentBrightessLevel = static_cast<uint32_t>(brightness);
+        ESP_LOGI("LOG","Brightness change %d",currentBrightessLevel);
+        if(currentBrightessLevel < maxBrightessLevel)
+            m_isDark = true;
+        else
+            m_isDark = false;
 }
 
 bool LightController::GetLightState()

@@ -22,6 +22,29 @@ extern "C"
 
 DispatcherTask dispatcher;
 
+#define OUTPUT_TEST_MODE 0
+
+#if OUTPUT_TEST_MODE == 1
+Gpio* testLightOutput;
+void testToggleLight()
+{
+    static bool lightState = 0;
+    if(lightState == 0)
+    {
+        ESP_LOGI("LOG", "Set light state 1");
+        testLightOutput->Set(true);
+        lightState = 1;
+    }
+    else
+    {
+        ESP_LOGI("LOG", "Set light state 0");
+        testLightOutput->Set(false);
+        lightState = 0;
+    }
+}
+#endif
+
+
 void app_init()
 {
     ESP_LOGI("LOG", "!!! Application Initialization !!!");
@@ -29,13 +52,15 @@ void app_init()
     Uart* uart = new Uart(1, 256000, GPIO_NUM_21, GPIO_NUM_20);
     PresenceSensor* presenceSensor = new PresenceSensor(new Xiao::XiaoHumanPresenceSensor(uart));
 
-    Adc* adc = new Adc(ADC_UNIT_1, ADC_CHANNEL_3);
+    Adc* adc = new Adc(ADC_UNIT_1, ADC_CHANNEL_4);
 
     Photoresistor* photoresistor = new Photoresistor(adc);
 
     ClimateSensor* climateSensor = new ClimateSensor(GPIO_NUM_2);
 
-    Gpio* lightOutputGpio = new Gpio(GPIO_NUM_9,Gpio::DirectionMode::OUTPUT,Gpio::PullMode::NO_PULL);
+    Gpio* lightOutputGpio = new Gpio(GPIO_NUM_10,Gpio::DirectionMode::OUTPUT,Gpio::PullMode::NO_PULL);
+
+#if OUTPUT_TEST_MODE == 0
     LightController* lightController = new LightController(presenceSensor, photoresistor,lightOutputGpio, 10);
 
     dispatcher.RegisterTask(presenceSensor,DispatcherTask::TaskFrequency::TASK_FREQ_100MS);
@@ -53,6 +78,9 @@ void app_init()
 
     network_wifi_init();
     http_server_init();
+#else
+testLightOutput = lightOutputGpio;
+#endif
 }
 
 
@@ -62,6 +90,9 @@ void app_main(void)
     
     while(1)
     {
+        #if OUTPUT_TEST_MODE == 1
+        testToggleLight();
+        #endif
         vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }

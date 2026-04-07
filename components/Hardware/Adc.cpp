@@ -39,7 +39,9 @@ int Adc::GetCurrentRawValue()
 
 int Adc::GetCurrentVoltageMv()
 {
-    ESP_LOGI("LOG","adc raw %d", (int)m_currentRawValue);
-
-    return (m_currentRawValue * m_multiplyFactor * ADC_REFERENCE_VOLTAGE_MV)/ADC_RESOLUTION_BIT;
+    int voltageMv = (m_currentRawValue * m_multiplyFactor * ADC_REFERENCE_VOLTAGE_MV)/ADC_RESOLUTION_BIT;
+    ESP_LOGI("LOG","adc raw %d, multiply factor: %f, voltage %d",  (int)m_currentRawValue, m_multiplyFactor, (int)voltageMv);
+    return voltageMv;
 }
+//I (23389) LOG: adc raw 4095, multiply factor: 1.000000, voltage 2499
+//I (23389) LOG: brightness 6, resistance: 655168 adc 2499

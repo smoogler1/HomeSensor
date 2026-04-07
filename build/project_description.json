@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "PresenceSensorESPIDF",
-    "project_version":    "0647cef-dirty",
+    "project_version":    "ff93591-dirty",
     "project_path":       "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF",
     "idf_path":           "C:/Users/bniczyporuk/esp/v5.5.1/esp-idf",
     "build_dir":          "C:/Users/bniczyporuk/Projekt/PresenceSensorESPIDF/build",

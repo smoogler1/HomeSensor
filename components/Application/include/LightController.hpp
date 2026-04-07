@@ -16,7 +16,7 @@ class LightController: public ITask
     private:
 
     void SetLightState(bool state);
-
+    void SetDarknessState(Photoresistor::BrightnessLevel brightness);
     PresenceSensor* m_presenceSensor;
     Photoresistor* m_photoresistor;
     Gpio* m_gpio;

@@ -103,5 +103,7 @@
     "internet": "cpp",
     "socket": "cpp",
     "nvmemorywrapper.h": "c"
-  }
+  },
+  "idf.currentSetup": "C:\\Users\\bniczyporuk\\esp\\v5.5.1\\esp-idf",
+  "idf.monitorPort": "COM10"
 }

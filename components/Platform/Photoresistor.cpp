@@ -40,14 +40,22 @@ void Photoresistor::Update()
 
     uint32_t previousResistance = 0;
     auto previousBrightness = m_currentBrightness;
+    bool found_brigthness = false;
 
     for(const auto& b: RESISTANCE_TO_BRIGTHNESS_MAP)
     {
-        if(m_currentResistance > previousResistance && m_currentResistance<=b.first)
+        if((m_currentResistance > previousResistance) && (m_currentResistance<=b.first))
+        {
             m_currentBrightness = b.second;
+            found_brigthness = true;
+            break;
+        }
 
         previousResistance = b.first;
     }
+
+    if(!found_brigthness)
+        m_currentBrightness = BrightnessLevel::BRIGHTNESS_DARK;
 
     if(previousBrightness != m_currentBrightness)
         m_callback(m_currentBrightness);
